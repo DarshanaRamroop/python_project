@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Home Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-7QIVd3kVOS8YbX2W/g/dwn+2SPryrV/KPtAywCE7mT4+8VfhnhksqQcjrI55wH4M4Fw7E17ETQ4boRbCpev4A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    
+    {% block content %}
+<div class="banner">
+    <div class="navbar">
+        <a href="{{url_for('views.homee')}}">
+            <img src="../static/images/logo.png" class="logo" alt="">
+        </a>
+        <ul>
+            <li><a href="{{url_for('views.view_faavourite')}}"><i class="fas fa-heart" style="color: white;"></i>
+            <li><a href="{{url_for('views.homee')}}">Home</a></li>
+           
+            {% if 'userid' not in session %}
+                <li><a href="{{url_for('views.log')}}">Log in</a></li>
+                <li><a href="{{url_for('views.about')}}">About Us</a></li>
+                <li><a href="{{url_for('views.logg')}}">Log in As Admin</a></li>
+            {% else %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{session["fn"]}}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                        <li><a class="dropdown-item" href="{{ url_for('views.profile') }}">Profile</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('views.logoutt') }}">Log out</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="advertDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Advert
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="advertDropdown">
+                        <li><a class="dropdown-item" href="{{ url_for('views.view_useradvert') }}">View Adverts</a></li>
+                        <li><a class="dropdown-item" href="{{url_for('views.add_product')}}">Add product</a></li>
+                        <li><a class="dropdown-item" href="{{url_for('views.add_service')}}">Add service</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+        </div>
+        <form method="post" action="/homeadvert" class="mt-3">
+            <div class="search-container">
+                <input type="text" name="search" placeholder="Search Adverts">
+                <select name="category">
+                    <option value="services">Services</option>
+                    <option value="products">Products</option>
+                </select>
+                <button type="submit" class="search-button">Search</button>
+            </div>
+        </form>
+
+    </div>
+    <main>
+        {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class="flash-messages">
+            {% for message in messages %}
+                <li class="flash-message">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+
+<section class="team">
+    <h3>Our Categories<hr></h3>
+    {% for category in categories %}
+    <a href="{{ url_for('views.view_category', category_id=category.0) }}">
+        <div class="card">
+            <div class="circle-container">
+                <h1 style="color:#fff;">{{ category.1 }}</h1>
+            </div>
+            <h2></h2>
+            <h4></h4>
+            <p></p>
+        </div>
+    </a>
+    {% endfor %}
+</section>
+
+<div class="services">
+    <h2>Our Adverts<hr></h2>
+    <div class="cards-container">
+        {% for row in rows %}
+            <div class="card">
+                <img src="{{ row.4 }}" alt="">
+                <h3>{{ row.1 }}</h3>
+                <p>{{row.2}}</p>
+                <div class="category">Category: {{ row.5 }}</div>
+                <div class="button-container">
+                <form method="post" action="/addtofavorites/">
+                    <input type="hidden" name="type" value="service">
+                    <input type="hidden" name="s_id" value="{{ row.0 }}">
+                    <button type="submit" class="favorite-button" style="background-color: red;"><i class="fas fa-heart" style="color: white;"></i></button>
+                </form>
+                <button class="offer-button" onclick="openServiceOfferModal('{{ row.0 }}')">
+                    <i class="fas fa-money-bill"></i> 
+                </button>
+            </div>
+        </div>
+
+            <div class="modal" id="serviceOfferModal{{ row.0 }}">
+                <div class="modal-content">
+                    <span class="close" onclick="closeServiceOfferModal('{{ row.0 }}')">&times;</span>
+                    <h2>Make an Offer for Service</h2>
+                    <form id="serviceOfferForm{{ row.0 }}" method="post" action="{{ url_for('views.make_service_offer') }}">
+                        <input type="hidden" name="advert_id" value="{{ row.0 }}">
+                        <input type="text" name="lname" value="{{ session['fn'] }}" placeholder="Your Name" required>
+                        <input type="email" name="email" value="{{ session['email'] }}" placeholder="Your Email" required>
+                        <input type="text" name="phone_number" value="{{ session['phone'] }}" placeholder="Your Phone Number" required>
+                        <textarea name="message" placeholder="Your Message"></textarea>
+                        <input type="number" name="amount" required>
+                        <button type="submit">Submit Offer</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="products">
+    <h2></h2>
+    <div class="cards-container">
+        {% for roww in rows1 %}
+            <div class="card">
+                <img src="{{ roww.5 }}" alt="">
+                <h3>{{ roww.1 }}</h3>
+                <p>{{roww.2}}</p>
+                <div class="price">Price: ${{ roww.3 }}</div>
+                <div class="category">Category: {{ roww.6 }}</div>
+                <div class="button-container">
+                <form method="post" action="/addtofavorites1/">
+                    <input type="hidden" name="type" value="product">
+                    <input type="hidden" name="p_id" value="{{ roww.0 }}">
+                    <button type="submit" class="favorite-button" style="background-color: red;"><i class="fas fa-heart" style="color: white;"></i></button>
+                </form>
+                <button class="offer-button" onclick="openProductOfferModal('{{ roww.0 }}')">
+                    <i class="fas fa-money-bill"></i> 
+                </button>
+            </div>
+        </div>
+
+            <div class="modal" id="productOfferModal{{ roww.0 }}">
+                <div class="modal-content">
+                    <span class="close" onclick="closeProductOfferModal('{{ roww.0 }}')">&times;</span>
+                    <h2>Make an Offer for Product</h2>
+                    <form id="productOfferForm{{ roww.0 }}" method="post" action="{{ url_for('views.make_product_offer') }}">
+                        <input type="hidden" name="advert_id" value="{{ roww.0 }}">
+                        <input type="text" name="lname" value="{{ session['fn'] }}" placeholder="Your Name" required>
+                        <input type="email" name="email" value="{{ session['email'] }}" placeholder="Your Email" required>
+                        <input type="text" name="phone_number" value="{{ session['phone'] }}" placeholder="Your Phone Number" required>
+                        <textarea name="message" placeholder="Your Message"></textarea>
+                        <input type="number" name="amount" required>
+                        <button type="submit">Submit Offer</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+</main>
+<section class="testimonials">
+    <h2>Testimonials<hr></h2>
+    {% for testimonial in testimonials %}
+    <div class="testimonial-carousel">
+        <div class="testimonial active">
+            <p>{{ testimonial[0] }}</p>
+            <p>- {{ testimonial[1] }}</p>
+        </div>
+        
+    </div>
+    <div class="carousel-navigation">
+       
+    </div>
+    {% endfor %}
+</section>
+    
+    
+    <footer>
+        <p>&copy;All rights reserved.</p>
+    </footer>
+
+    {% endblock %}
+    <script
+    type="text/javascript"
+    src="{{url_for('static', filename='js/main.js')
+    }}"
+    ></script>
+    
+</body>
+</html>

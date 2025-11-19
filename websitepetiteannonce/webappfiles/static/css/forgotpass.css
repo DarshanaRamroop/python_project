@@ -1,0 +1,121 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins' ,sans-serif;
+}
+
+
+.navbar{
+    width:85%;
+    margin: auto;
+    padding: 35px 0;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo{
+    width:270px;
+    cursor: pointer;
+}
+
+.navbar ul li{
+    list-style: none;
+    display: inline-block;
+    margin: 20px;
+    position: relative;
+}
+
+.navbar ul li a{
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.navbar ul li ::after{
+    content:'';
+    height: 3px;
+    width: 0%;
+    background: #a66bb9;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+
+}
+
+.navbar ul li:hover::after{
+    width: 100%;
+}
+
+
+body {
+    background-color: #a66bb9;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 100px auto;
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #a66bb9;
+    margin-bottom: 30px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+input[type="email"] {
+    width: 100%;
+    height: 30px;
+    font-size: 16px;
+    padding: 6px 8px; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+input[type="submit"] {
+    background-color: #a66bb9;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px;
+}
+
+input[type="submit"]:hover {
+    background-color: #eaf1f1;
+}
+
+p {
+    text-align: center;
+    margin-top: 20px;
+}
+
+p a {
+    text-decoration: none;
+    color: #dee8e7;
+    font-weight: 600;
+}
+
+p a:hover {
+    text-decoration: underline;
+}

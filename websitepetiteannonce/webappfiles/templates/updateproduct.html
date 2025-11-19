@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Service</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/loginu.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-7QIVd3kVOS8YbX2W/g/dwn+2SPryrV/KPtAywCE7mT4+8VfhnhksqQcjrI55wH4M4Fw7E17ETQ4boRbCpev4A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  </head>
+  <body>
+    
+    {% block content %}
+
+    <div class="banner">
+        <div class="navbar">
+            <a href="{{url_for('views.homee')}}">
+                <img src="../static/images/logo.png" class="logo" alt="">
+           
+                <ul>
+                    <li><a href="{{url_for('views.view_faavourite')}}"><i class="fas fa-heart" style="color: white;"></i>
+                  <li><a href="{{url_for('views.homee')}}">Home</a></li>
+                  {% if 'userid' not in session %}
+                      <li><a href="{{url_for('views.log')}}">Log in</a></li>
+                      <li><a href="{{url_for('views.about')}}">About Us</a></li>
+                      <li><a href="{{url_for('views.logg')}}">Log in As Admin</a></li>
+                  {% else %}
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              {{session["fn"]}}
+                          </a>
+                          <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                              <li><a class="dropdown-item" href="{{ url_for('views.profile') }}">Profile</a></li>
+                              <li><a class="dropdown-item" href="{{ url_for('views.modify_pass') }}">Change Password</a></li>
+                              <li><a class="dropdown-item" href="{{ url_for('views.logoutt') }}">Log out</a></li>
+                          </ul>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="advertDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Advert
+                          </a>
+                          <ul class="dropdown-menu" aria-labelledby="advertDropdown">
+                            <li><a class="dropdown-item" href="{{ url_for('views.view_useradvert') }}">View Adverts</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('views.view_exuseradvert') }}">Expired Adverts</a></li>
+                              <li><a class="dropdown-item" href="{{url_for('views.add_product')}}">Add product</a></li>
+                              <li><a class="dropdown-item" href="{{url_for('views.add_service')}}">Add service</a></li>
+                          </ul>
+                      </li>
+                  {% endif %}
+              </ul>
+        </div>
+    </div>
+
+  <div class="content">
+    <h3>{{msg}}</h3>
+    <form
+    class="row"
+    action=""
+    method="post"
+    enctype="multipart/form-data"
+>
+    <h2 class="mt-3">Update Product Advert</h2>
+    <div class="col-md-6 pt-5">
+        <div class="mb-3">
+            <label for="txtname" class="form-label">Title</label>
+            <input
+                type="text"
+                class="form-control"
+                name="txtname"
+                value="{{rows[0][1]}}"
+                id="txtname"
+            >
+            </input>
+        </div>
+        <div class="mb-3">
+            <label for="txtdesc" class="form-label">Description</label>
+            <input
+                type="text"
+                class="form-control"
+                name="txtdesc"
+                value="{{rows[0][2]}}"
+                id="txtdesc"
+            />
+        </div>
+        <div class="mb-3">
+            <label for="txtprice" class="form-label">Price:</label>
+            <input
+                type="text"
+                class="form-control"
+                name="txtprice"
+                value="{{rows[0][3]}}"
+                id="txtprice"
+            />
+        </div>
+        <div class="mb-3">
+            <label for="doc" class="form-label">Image(s)</label>
+            <input
+                type="file"
+                class="form-control"
+                id="doc"
+                name="doc"
+                multiple
+            />
+            {% if rows and rows[5] %}
+                <small class="form-text text-muted">Current Image: {{ rows[0][5] }}</small>
+            {% endif %}
+        </div>
+    </div>
+    <div class="mb-3">
+        <select
+    id="ddlcat"
+    name="ddlcat"
+    class="form-select form-select-md mb-3"
+    aria-label=".form-select-lg example"
+
+>
+<option>Select Category</option>
+{% for row in rows1 %}
+
+<option value="{{row.0}}">{{row.1}}</option>
+{% endfor %}
+</select>
+        
+    </div>
+
+       
+      </div>
+      <button type="submit" class="col-6 btn" style="background-color:#a66bb9; position: relative; top: -150px; right: -750px; margin-left: auto; margin-right: auto;">
+        Update
+      </button>
+    </form>
+    {% endblock %}
+    <script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.7.0.min.js')
+}}"></script>
+<script type="text/javascript"
+src="https://code.jquery.com/ui/1.12.1/jquery-ui.js">
+</script>
+<script
+src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.
+js"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.min.js')
+}}"></script>
+  
+<script type="text/javascript">
+  $(function () {
+  $("#txtpdate").datepicker({
+  dateFormat: 'yy/mm/dd'
+  });
+  });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+  </body>
+</html>

@@ -1,0 +1,113 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-7QIVd3kVOS8YbX2W/g/dwn+2SPryrV/KPtAywCE7mT4+8VfhnhksqQcjrI55wH4M4Fw7E17ETQ4boRbCpev4A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<nav></nav> 
+{% block content %} 
+<div class="header">
+
+</div>
+
+
+<div class="banner">
+   <div class="navbar">
+       <a href="{{url_for('views.homee')}}">
+           <img src="../static/images/logo.png" class="logo" alt="">
+      
+           <ul>
+            <li><a href="{{url_for('views.view_faavourite')}}"><i class="fas fa-heart" style="color: white;"></i>
+             <li><a href="{{url_for('views.homee')}}">Home</a></li>
+             {% if 'userid' not in session %}
+                 <li><a href="{{url_for('views.log')}}">Log in</a></li>
+                 <li><a href="{{url_for('views.about')}}">About Us</a></li>
+                 <li><a href="{{url_for('views.logg')}}">Log in As Admin</a></li>
+             {% else %}
+                 <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                         {{session["fn"]}}
+                     </a>
+                     <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                         <li><a class="dropdown-item" href="{{ url_for('views.profile') }}">Profile</a></li>
+                         <li><a class="dropdown-item" href="{{ url_for('views.modify_pass') }}">Change Password</a></li>
+                         <li><a class="dropdown-item" href="{{ url_for('views.logoutt') }}">Log out</a></li>
+                     </ul>
+                 </li>
+                 <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="#" id="advertDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                         Advert
+                     </a>
+                     <ul class="dropdown-menu" aria-labelledby="advertDropdown">
+                       <li><a class="dropdown-item" href="{{ url_for('views.view_useradvert') }}">View Adverts</a></li>
+                       <li><a class="dropdown-item" href="{{ url_for('views.view_exuseradvert') }}">Expired Adverts</a></li>
+                         <li><a class="dropdown-item" href="{{url_for('views.add_product')}}">Add product</a></li>
+                         <li><a class="dropdown-item" href="{{url_for('views.add_service')}}">Add service</a></li>
+                     </ul>
+                 </li>
+             {% endif %}
+         </ul>
+   </div>
+</div>
+
+
+<div class="container">
+   
+   <div class="about">
+      <div class="left">
+         <h1>About us</h1>
+         <hr>
+         <p>About lexpress-petites-annonces.mu
+            Launched in 2009, www.lexpressclassifieds.mu has been rebranded in 2019 and has now become www.lexpress-petites-annonces.mu. It is one of the most visited websites on the island with more than 150 000 monthly visits. Every year, the website connects more than 500 000 people with businesses and individuals around the island. Lexpress-petites-annonces.mu hosts classified ads in 18 categories ranging from properties to services.</p>
+                  <p>By grouping adverts in 18 Categories namely  Real Estate | Multimedia | Home – Furniture | Construction & DIY | Home - Kitchen & Bathroom | Leisure | Kids | Home – Maintenance | Sports | Appliances | Home - Decoration, Lightings, Textiles & Fabrics | Professional Equipment | Cars, Bikes, Vehicles | Pets | Garden & Swimming Pool | Jobs | Services | Fashion & Wellness, the website stands as an online marketplace interconnecting buyers and sellers on the same portal.</p>
+      </div>
+      <div class="right">
+         <img src="../static/images/rock.jpg">
+      </div>
+      <div class="clear"></div>
+   </div>
+   
+   
+   
+   <div class="mission">
+     
+      <div class="left">
+         <img src="../static/images/scar.jpg">
+      </div>
+        <div class="right">
+         <h1>Mission Statement</h1>
+         <hr>
+         <p>Tailor-made advertising offer
+            To promote your products and services as well as boosting your sales.
+            
+            <br>Do not hesitate to contact our team at marketing@lasentinelle.mu or at 206-8200 / 5729-4244.
+            
+           <br> It would be our pleasure to make you a tailor-made advertising offer..</p>
+
+                  <p>Some key figures (Lexpressclassifieds.mu):
+
+                    <br>Number of visits since launch of website: +5 million
+                    <br>Average number of monthly page visits: +150 000
+                    <br>Average time spent on the website: 7-10 minutes
+                    <br>Number of ads online: 22 000.</p>
+
+      </div>
+      <div class="clear"></div>
+      
+   </div>
+   <div class="post_testimonial">
+      <h1>Post Your Testimonial</h1>
+      <form action="/posttestimonial/" method="post">
+        <label for="message">Your Testimonial:</label>
+        <textarea id="message" name="message" required></textarea>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  
+       
+<footer>
+   <br>
+   <p>Copyright ©2020. All rights reserved</p>
+</footer>
+{% endblock %}

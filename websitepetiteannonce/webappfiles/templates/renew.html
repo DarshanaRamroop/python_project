@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/renew.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-7QIVd3kVOS8YbX2W/g/dwn+2SPryrV/KPtAywCE7mT4+8VfhnhksqQcjrI55wH4M4Fw7E17ETQ4boRbCpev4A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<body>
+
+
+  <div class="banner">
+    <div class="navbar">
+        <a href="{{url_for('views.homee')}}">
+            <img src="../static/images/logo.png" class="logo" alt="">
+       
+            <ul>
+              <li><a href="{{url_for('views.view_faavourite')}}"><i class="fas fa-heart" style="color: white;"></i>
+              <li><a href="{{url_for('views.homee')}}">Home</a></li>
+              {% if 'userid' not in session %}
+                  <li><a href="{{url_for('views.log')}}">Log in</a></li>
+                  <li><a href="{{url_for('views.about')}}">About Us</a></li>
+                  <li><a href="{{url_for('views.logg')}}">Log in As Admin</a></li>
+              {% else %}
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          {{session["fn"]}}
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                          <li><a class="dropdown-item" href="{{ url_for('views.profile') }}">Profile</a></li>
+                          <li><a class="dropdown-item" href="{{ url_for('views.modify_pass') }}">Change Password</a></li>
+                          <li><a class="dropdown-item" href="{{ url_for('views.logoutt') }}">Log out</a></li>
+                      </ul>
+                  </li>
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="advertDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Advert
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="advertDropdown">
+                        <li><a class="dropdown-item" href="{{ url_for('views.view_useradvert') }}">View Adverts</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('views.view_exuseradvert') }}">Expired Adverts</a></li>
+                          <li><a class="dropdown-item" href="{{url_for('views.add_product')}}">Add product</a></li>
+                          <li><a class="dropdown-item" href="{{url_for('views.add_service')}}">Add service</a></li>
+                      </ul>
+                  </li>
+              {% endif %}
+          </ul>
+    </div>
+</div>
+
+  <form action="/renew" method="POST">
+    <div>
+      <img src="../static/images/mcb.png" alt="Image">
+    </div>
+    
+    <div>
+      <label for="textbox">Enter the reference number:</label>
+      <input type="text" id="textbox" name="productid" value="{{ rows[0][0] }}" readonly>
+    </div>
+
+    
+    <div>
+      <button type="submit">Submit</button>
+    </div>
+
+    
+    <div>
+      <p>You will notify when your advert will be renewed.</p>
+    </div>
+  </form>
+
+</body>
+</html>

@@ -1,0 +1,507 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.services, .products {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.cards-container {
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  margin-top: 20px;
+}
+.card {
+  width: 300px;
+  display: inline-block;
+  margin: 10px;
+  flex: 0 0 calc(20% - 20px);;
+  margin: 10px;
+  padding: 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  background-color: #fff;
+  max-width: 300px;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+
+}
+
+.card:hover {
+  transform: scale(1.05); 
+}
+.card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.card h3 {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #666;
+}
+
+.card .category {
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #666;
+}
+
+.favorite-button, .offer-button {
+    padding: 8px 12px;
+    font-size: 14px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    display: block;
+    margin: 0 auto;
+    flex: 0 0 150px;
+    margin: 0 5px;
+    border-radius: 5px;
+
+}
+
+.favorite-button:hover,
+.offer-button:hover {
+  background-color: #0056b3;
+}
+
+.favorite-button i, .offer-button i {
+    margin-right: 5px;
+}
+
+
+.card:hover,
+.favorite-button:hover,
+.offer-button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.testimonials {
+  text-align: center;
+  margin: 20px 0;
+  position: relative;
+}
+
+.testimonial-carousel {
+  display: flex;
+  overflow: hidden;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.testimonial {
+  flex: 0 0 100%;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial.active {
+  display: block;
+  opacity: 1;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Added box-shadow for active testimonial */
+}
+
+/* Added hover effect for testimonial cards */
+.testimonial:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-navigation {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.carousel-navigation span {
+  font-size: 30px;
+  color: #555;
+  cursor: pointer;
+  user-select: none;
+  padding: 8px;
+  transition: color 0.3s ease;
+}
+
+.carousel-navigation span:hover {
+  color: #333;
+}
+
+.carousel-navigation .next {
+  margin-left: 10px;
+}
+
+.see-more-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.team {
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center;
+}
+
+.team h1 {
+  font-size: 30px;
+}
+
+.team h3{
+    font-size: 20px; 
+    color: #333; 
+    margin-bottom: 20px; 
+    text-align: center; 
+    margin-top: -20px;
+    margin-left: 30px;
+}
+
+
+.team hr {
+  width: 50px;
+  border: 2px solid #a66bb9;
+  margin: 0 auto;
+}
+
+.card {
+  width: 300px;
+  display: inline-block;
+  margin: 10px;
+  padding: 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  background-color: #fff;
+  max-width: 300px;
+
+}
+
+.circle-container {
+  width: 90px; 
+  height: 90px; 
+  border-radius: 50%; 
+  background-color: #a66bb9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  margin-left: 100px;
+}
+
+.circle-container h1 {
+  font-size: 12px;
+  color:#fff
+}
+
+.card h2 {
+  margin-top: 10px;
+  font-size: 24px;
+}
+
+.card h4 {
+  font-size: 18px;
+  color: #666;
+}
+
+
+.team .card {
+  flex: 0 0 calc(5% - 5px);
+  margin: 5px;
+  margin-top: 20px;
+  margin-left: 10px;
+  padding: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  background-color: #fff;
+}
+
+
+.team .card h2 {
+  font-size: 16px; 
+  margin: 10px 0;
+}
+
+.team .card p {
+  font-size: 14px;
+}
+
+.card p {
+  font-size: 14px;
+}
+
+.button-container-flex {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+
+@media (max-width: 768px) {
+  .card {
+      max-width: 100%;
+  }
+}
+
+@media (max-width: 800px) {
+    .cards-container {
+      justify-content: center;
+    }
+    .card {
+      max-width: 100%;
+      margin: 10px;
+    }
+  
+}
+
+.search-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.search-container input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+}
+
+.search-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+
+.navbar {
+    width: 100%;
+    margin: auto;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #a66bb9;
+    padding: 0 20px;
+  }
+  
+  .logo {
+    width: 270px;
+    cursor: pointer;
+  }
+  
+  .navbar ul {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar ul li {
+    list-style: none;
+    margin: 0 20px;
+    position: relative;
+    color: #fff;
+  }
+  
+  .navbar ul li {
+    list-style: none;
+    margin: 0 20px; 
+    position: relative;
+  }
+  
+  .navbar ul li::after {
+    content: '';
+    height: 3px;
+    width: 0%;
+    background: #a66bb9;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+  }
+  
+  .navbar ul li:hover::after {
+    width: 100%;
+  }
+  
+  
+  .dropdown-menu {
+    background-color: #a66bb9;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
+    padding: 8px;
+    min-width: 120px;
+    right: 0;
+    position: absolute;
+    top: 100%; 
+    display: none; 
+    flex-direction: column; 
+    margin-top: 5px;
+  }
+  
+  .nav-item.dropdown:hover .dropdown-menu {
+    display: flex; 
+  }
+  
+  .dropdown-menu a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 8px 12px;
+  }
+  
+  .dropdown-menu a:hover {
+    background-color: black;
+  }
+  
+  .nav-item.dropdown {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .offer-button {
+    background: none;
+    border: none;
+    background-color: #007BFF;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    width: 70%;
+    border-radius: 5px;
+}
+
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.teams {
+  text-align: center;
+  margin: 20px;
+}
+
+.teams h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+
+
+.services h2{
+  font-size: 20px; 
+  color: #333;  
+  text-align: center; 
+  margin-top: -20px;
+  margin-left: 30px;
+}
+
+
+.services hr {
+width: 50px;
+border: 2px solid #a66bb9;
+margin: 0 auto;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.favorite-button,
+.offer-button {
+  flex: 0 0 48%;
+  margin: 0 5px;
+}
+
+.button-container-flex {
+  display: flex;
+  gap: 5px; 
+}
+
+footer {
+  background-color: #a66bb9;
+  color: #fff; 
+  padding: 10px; 
+  text-align: center; 
+  position: fixed; 
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+footer p {
+  margin: 0; 
+  font-size: 14px; 
+}
+
+
+.testimonials h2{
+  font-size: 20px; 
+  color: #333;  
+  text-align: center; 
+  margin-top: -20px;
+  margin-left: 30px;
+}
+
+
+.testimonials hr {
+width: 50px;
+border: 2px solid #a66bb9;
+margin: 0 auto;
+}

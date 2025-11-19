@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}">
+    <title></title>
+</head>
+<body>
+    
+    {% block content %}
+    <div class="container">
+      
+    <h2>Reset Password</h2>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+
+            <form action="{{ url_for('views.reset_pass', email=email) }}" method="post">
+                <label for="txtpass1">New Password:</label>
+                <input type="password" id="txtpass1" name="txtpass1" required>
+                
+                <label for="txtpass2">Confirm Password:</label>
+                <input type="password" id="txtpass2" name="txtpass2" required>
+            
+                <input type="submit" value="Change Password">
+            </form>
+            
+        </div>
+</body>
+{% endblock %}
+</html>

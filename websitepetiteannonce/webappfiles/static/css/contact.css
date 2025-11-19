@@ -1,0 +1,255 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    
+}
+body{
+        background-image: white;
+        
+    
+}
+
+
+
+.navbar{
+    width:100%;
+    margin: auto;
+    height: 10px;
+    padding: 35px 0;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #a66bb9;
+}
+
+.logo{
+    width:270px;
+    cursor: pointer;
+}
+
+.navbar ul li{
+    list-style: none;
+    display: inline-block;
+    margin: 20px;
+    position: relative;
+}
+
+.navbar ul li a{
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.navbar ul li ::after{
+    content:'';
+    height: 3px;
+    width: 0%;
+    background: #009688;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+
+}
+
+.navbar ul li:hover::after{
+    width: 100%;
+}
+
+.text-box{
+    width: 90%;
+    color: #ffffff;
+    position: absolute;
+    top: 77%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    margin-bottom:650px;
+}
+.text-box h1{
+    font-size:52px;
+    
+}
+h1{
+    font-size:36px;
+    font-weight:600;
+}
+p{
+    color: rgb(0, 0, 0);
+    font-size:23px;
+    font-style:normal;
+    font-weight:900;
+    line-height:23px;
+    width:-45px;
+    padding: 10px;
+    margin-top:25px;
+    letter-spacing:1px;
+}
+.row{
+margin-top:1%;
+display: flex;
+justify-content: space-between;
+}
+.layer{
+    background: transparent;
+    height:100%;
+    width:100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition:0.5s;
+}
+.layer:hover{
+    background: rgba(71, 74, 71, 0.7);
+
+}
+.layer h3{
+    width:100%;
+    font-weight:500;
+    color: #ffffff;
+    font-size:26px;
+    bottom:0;
+    left:50%;
+    transform: translateX(-50%);
+    position: absolute;
+    transition:0.5s;
+}
+.layer:hover h3{
+  bottom:49%;
+  opacity:1;
+}
+.hero-btn{
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 900;
+    border: 1px transparent;
+    padding:12px 34px;
+    font-size:23px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+    width: 350px;
+    height: 55px;
+    font-size: 20px;
+    border-radius: 50px;
+    background-color: #a66bb9;
+    color: white;
+    
+    
+}
+.hero-btn:hover{
+    border: 5px solid rgb(255, 255, 255);
+    border-radius:5px;
+    background-image:#a66bb9 ;
+    transition:0.5s;
+}
+ 
+
+.footer{
+	background-color:#a66bb9;
+    padding: 70px 0;
+}
+.footer-col{
+   width: 25%;
+   padding: 0 15px;
+}
+.footer-col h4{
+	font-size: 18px;
+	color: #ffffff;
+	text-transform: capitalize;
+	margin-bottom: 35px;
+	font-weight: 500;
+	position: relative;
+}
+.footer-col h4::before{
+	content: '';
+	position: absolute;
+	left:0;
+	bottom: -10px;
+	background-color:#FFC000;
+	height: 2px;
+	box-sizing: border-box;
+	width: 50px;
+}
+.footer-col ul li:not(:last-child){
+	margin-bottom: 10px;
+}
+.footer-col ul li a{
+	font-size: 16px;
+	text-transform: capitalize;
+	color:white;
+	text-decoration: none;
+	font-weight: 300;
+	color:white;
+	display: block;
+	transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+	color: #ffffff;
+	padding-left: 8px;
+}
+.footer-col .social-links a{
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	background-color: rgba(255,255,255,0.2);
+	margin:0 10px 10px 0;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 50%;
+	color: #ffffff;
+	transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover{
+	color: #24262b;
+	background-color: #ffffff;
+}
+
+ 
+ 
+
+
+
+.location{
+    width: 80%;
+    margin: auto;
+    padding: 80px 0;
+}
+.location iframe{
+    width:100%;
+}
+.contact-us{
+    width: 80%;
+    margin:auto;
+}
+.contact-col{
+    flex-basis: 48%;
+    margin-bottom:30%;
+}
+.contact-col i{
+font-size:25px;
+color:#a66bb9;
+margin-right:25px;
+}
+.contact-col div{
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+.contact-col div p{
+    padding:0;
+}
+.contact-col div h5{
+    font-size:20px;
+    margin-bottom:5px;
+    color: rgb(13, 20, 223);
+    font-weight: 900;
+}
+.contact-col input, .contact-col textarea{
+    width: 100%;
+    padding:15px;
+    margin-bottom: 17px;
+    outline: none;
+    border:1px solid #a66bb9;
+}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Cards</title>
+ <link rel="stylesheet" href="{{ url_for('static', filename='css/advert.css') }}">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-7QIVd3kVOS8YbX2W/g/dwn+2SPryrV/KPtAywCE7mT4+8VfhnhksqQcjrI55wH4M4Fw7E17ETQ4boRbCpev4A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+
+<body>
+    {% block content %}
+
+
+
+    <div class="banner">
+      <div class="navbar">
+          <a href="{{url_for('views.homee')}}">
+              <img src="../static/images/logo.png" class="logo" alt="">
+         
+              <ul>
+                <li><a href="{{url_for('views.view_faavourite')}}"><i class="fas fa-heart" style="color: white;"></i>
+                <li><a href="{{url_for('views.homee')}}">Home</a></li>
+                {% if 'userid' not in session %}
+                    <li><a href="{{url_for('views.log')}}">Log in</a></li>
+                    <li><a href="{{url_for('views.about')}}">About Us</a></li>
+                    <li><a href="{{url_for('views.logg')}}">Log in As Admin</a></li>
+                {% else %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{session["fn"]}}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                            <li><a class="dropdown-item" href="{{ url_for('views.profile') }}">Profile</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('views.modify_pass') }}">Change Password</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('views.logoutt') }}">Log out</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="advertDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Advert
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="advertDropdown">
+                          <li><a class="dropdown-item" href="{{ url_for('views.view_useradvert') }}">View Adverts</a></li>
+                          <li><a class="dropdown-item" href="{{ url_for('views.view_exuseradvert') }}">Expired Adverts</a></li>
+                            <li><a class="dropdown-item" href="{{url_for('views.add_product')}}">Add product</a></li>
+                            <li><a class="dropdown-item" href="{{url_for('views.add_service')}}">Add service</a></li>
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+      </div>
+  </div>
+        <div class="card-container">
+            {% for row in rows %}
+            <div class="card">
+              <div class="image">
+                <img src="{{row.3}}">
+              </div>
+          
+              <div class="title">
+                <h1>{{row.1}}</h1>
+              </div>
+          
+              <div class="category">
+                <p>{{row.21}}</p>
+              </div>
+          
+              <div class="des">
+                <p>{{row.2}}</p>
+              </div>
+          
+              <div class="status">
+                <p>{{row.5}}</p>
+              </div>
+          
+              <div class="button-container">
+              <form method="get" action="/updateservice/">
+                <input type="hidden" name="serviceid" value="{{ row[0] }}">
+                <button type="submit">Update</button>
+              </form>
+          
+              <form method="post" action="/deleteservice/">
+                <input type="hidden" name="serviceid" value="{{ row[0] }}">
+                <button type="submit">Delete</button>
+              </form>
+            </div>
+        </div>
+            {% endfor %}
+          
+            
+            {% for roww in rows1 %}
+            <div class="card">
+              <div class="image">
+                <img src="{{roww.5}}">
+              </div>
+          
+              <div class="title">
+                <h1>{{roww.1}}</h1>
+              </div>
+          
+              <div class="price">
+                <h1>Price: ${{ roww.3 }}</h1>
+              </div>
+          
+              <div class="category">
+                <p>{{roww.23}}</p>
+              </div>
+          
+              <div class="des">
+                <p>{{roww.2}}.</p>
+              </div>
+
+              <div class="status">
+                <p>{{roww.7}}</p>
+              </div>
+          
+              <div class="button-container">
+              <form method="get" action="/updateproduct/">
+                <input type="hidden" name="productid" value="{{ roww[0] }}">
+                <button type="submit">Update</button>
+              </form>
+          
+              <form method="post" action="/deleteproduct/">
+                <input type="hidden" name="productid" value="{{ roww[0] }}">
+                <button type="submit">Delete</button>
+              </form>
+            </div>
+        </div>
+            {% endfor %}
+          </div>
+          
+
+{% endblock %}
+</body>
+</html>
